@@ -5,7 +5,6 @@ from driver import driver
 url = 'https://play.google.com/store/apps'
 
 def get_apps():
-    driver.get(url)
     elements = driver.find_elements('css selector', 'div.neq64b')
     print(elements)
     results = []
@@ -16,7 +15,7 @@ def get_apps():
 
 if __name__ == '__main__':
     driver.get(url)
-    input('please login >')
+    input('please navigate to target page >')
     res = get_apps()
     json.dump(res, open('apps.json', 'w'), indent=2)
     driver.quit()

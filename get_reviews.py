@@ -1,5 +1,6 @@
 from driver import driver
 import json
+import os
 from loguru import logger
 
 @logger.catch
@@ -20,10 +21,13 @@ if __name__ == '__main__':
     with open('apps.json') as f:
         apps = json.load(f)
     for app in apps:
+        fname = app.split('=')[-1]
+        if os.path.exists(f'data/{fname}.json'):
+            logger.warning(f'{fname}.json already exists')
+            continue
         reviews = get_reviews(app)
         if reviews is None:
             continue
-        fname = app.split('=')[-1]
         with open(f'data/{fname}.json', 'w') as f:
             json.dump(reviews, f, indent=2)
     driver.quit()

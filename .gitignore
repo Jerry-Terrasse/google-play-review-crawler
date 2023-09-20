@@ -163,5 +163,7 @@ cython_debug/
 data/
 *.json
 *.html
+cookies/
+profile/
 
 .python-version
